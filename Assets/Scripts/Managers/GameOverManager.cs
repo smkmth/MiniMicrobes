@@ -15,6 +15,7 @@ public class GameOverManager : MonoBehaviour {
     {
         GameOverMessage.SetActive(false);
         keyDoorManager = GetComponent<KeyDoorManager>();
+        ResetGame();
     }
 
     private void Update()

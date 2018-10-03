@@ -132,7 +132,7 @@ MonoBehaviour:
   maxSpeed: 0
   movement: 0
   movementVector: {x: 0, y: 0}
-  burstJumpVector: {x: 0, y: 100}
+  burstJumpVector: {x: 0, y: 60}
   continueJumpVector: {x: 0, y: 50}
   rb: {fileID: 0}
   grounded: 0
