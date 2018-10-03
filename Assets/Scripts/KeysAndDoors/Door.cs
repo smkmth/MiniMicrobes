@@ -27,16 +27,22 @@ public class Door : MonoBehaviour
 
     }
 
+    public void CloseDoor()
+    {
+        boxCollider.isTrigger = false;
+    }
+
     public void CheckKey()
     {
 
-        foreach (Key key in keyManager.keys)
+        foreach (Key key in keyManager.takenKeys)
         {
 
             if (key.whatDoorThisOpens == doorName)
             {
 
                 OpenDoor();
+                keyManager.openDoors.Add(this);
             }
         }
     }
