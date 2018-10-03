@@ -132,8 +132,8 @@ MonoBehaviour:
   maxSpeed: 0
   movement: 0
   movementVector: {x: 0, y: 0}
-  burstJumpVector: {x: 0, y: 60}
-  continueJumpVector: {x: 0, y: 50}
+  burstJumpVector: {x: 0, y: 50}
+  continueJumpVector: {x: 0, y: 800}
   rb: {fileID: 0}
   grounded: 0
   groundcheck: {fileID: 4868892231014708}
@@ -141,6 +141,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  bursting: 0
 --- !u!212 &212864478741535672
 SpriteRenderer:
   m_ObjectHideFlags: 1
