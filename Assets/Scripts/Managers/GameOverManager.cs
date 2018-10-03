@@ -9,6 +9,7 @@ public class GameOverManager : MonoBehaviour {
     public KeyDoorManager keyDoorManager;
     public GameObject GameOverMessage;
     public Transform PlayerStartPoint;
+    public bool gameOverMenuIsOn = false;
     
 
     private void Start()
@@ -25,6 +26,13 @@ public class GameOverManager : MonoBehaviour {
             GameOver();
 
         }
+        if (gameOverMenuIsOn)
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                ResetGame();
+            }
+        }
 
 
     }
@@ -32,11 +40,15 @@ public class GameOverManager : MonoBehaviour {
     public void GameOver()
     {
         GameOverMessage.SetActive(true);
-
+        gameOverMenuIsOn = true;
     }
+
+
 
     public void ResetGame()
     {
+        gameOverMenuIsOn = false;
+
 
         Player = Instantiate(PlayerPrefab, PlayerStartPoint, true);
         GameOverMessage.SetActive(false);

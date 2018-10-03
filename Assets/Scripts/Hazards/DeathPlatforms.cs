@@ -7,7 +7,9 @@ public class DeathPlatforms : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-
-        Destroy(collision.collider.gameObject);
+        if (collision.collider.tag == "Player")
+        {
+            Destroy(collision.collider.gameObject);
+        }
     }
 }

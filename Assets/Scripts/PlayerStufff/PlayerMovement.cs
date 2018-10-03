@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour {
     public Transform groundcheck;
     public float groundcheckRadius;
     public LayerMask groundLayer;
-
+    public bool bursting;
 
 	// Use this for initialization
 	void Start () {
@@ -40,13 +40,14 @@ public class PlayerMovement : MonoBehaviour {
             movement = 0;
         }
 
-        if (grounded)
+        if (grounded || bursting)
         {
             rb.gravityScale = 1;
         } else
         {
             rb.gravityScale = 10;
         }
+        
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -55,11 +56,15 @@ public class PlayerMovement : MonoBehaviour {
 
         if (Input.GetButton("Jump"))
         {
-
+            bursting = true;
+           
             rb.AddForce(burstJumpVector, ForceMode2D.Force);
 
 
 
+        } else
+        {
+            bursting = false;
         }
 
 
