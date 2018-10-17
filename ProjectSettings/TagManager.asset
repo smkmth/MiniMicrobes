@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Manager
   - GridSquare
+  - Grid
+  - EditorCam
+  - PlayerCam
   layers:
   - Default
   - TransparentFX

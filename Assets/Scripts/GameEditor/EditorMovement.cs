@@ -7,21 +7,69 @@ public class EditorMovement : MonoBehaviour {
     public float movementy;
     public float speed;
     public Vector3 movementVector;
-    
+    public MouseClick editorClick;
+    public Camera editorCam;
+    public Camera playerCam;
+    public bool editorControl;
 
-	
-	// Update is called once per frame
-	void Update () {
+    public PlayerMovement player;
+    private void Start()
+    {
+        editorClick = GetComponent<MouseClick>();
+        editorControl = true;
+        editorClick.canEdit = true;
+        playerCam.enabled = false;
+        editorCam.enabled = true;
 
-        movementx = Input.GetAxis("Horizontal");
-        movementy = Input.GetAxis("Vertical");
-        movementVector = new Vector3(movementx, movementy, 0);
+        
+    }
 
-        transform.Translate(movementVector * speed);
+    // Update is called once per frame
+    void Update () {
+        if (editorControl == true)
+        {
+            movementx = Input.GetAxis("Horizontal");
+            movementy = Input.GetAxis("Vertical");
+            movementVector = new Vector3(movementx, movementy, 0);
+
+            transform.Translate(movementVector * speed);
+        }
+        else
+        {
 
 
-     
+
+        }
+        if (Input.GetButtonDown("Play"))
+        {
+            SwitchControl();
+        }
+
+    }
+
+    public void SwitchControl()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+
+        
+        if (editorControl == true)
+        {
+            player.ControlPlayer();
+            editorControl = false;
+            editorClick.canEdit = false;
+            playerCam.enabled = true;
+            editorCam.enabled = false;
+        }
+        else
+        {
+            player.StopControllingPlayer();
+            editorControl = true;
+            editorClick.canEdit = true;
+            playerCam.enabled = false;
+            editorCam.enabled = true;
 
 
+
+        }
     }
 }

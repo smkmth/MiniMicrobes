@@ -19,17 +19,16 @@ public class PlayerMovement : MonoBehaviour {
     public bool playerCanMove;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         rb = GetComponent<Rigidbody2D>();
-        playerCanMove = false;
-        rb.gravityScale = 0;
+        StopControllingPlayer();
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
         grounded = Physics2D.OverlapCircle(groundcheck.position, groundcheckRadius, groundLayer);
-        if (playerCanMove)
+        if (!playerCanMove)
         {
             if (Input.GetAxisRaw("Horizontal") != 0)
             {
@@ -77,5 +76,26 @@ public class PlayerMovement : MonoBehaviour {
 
 
     }
-   
+
+    public void ControlPlayer()
+    {
+        Debug.Log("trying");
+        playerCanMove = true;
+        rb.gravityScale = 10;
+        rb.constraints = RigidbodyConstraints2D.None;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+    }
+
+    public void StopControllingPlayer()
+    {
+        Debug.Log("trying back");
+
+        playerCanMove = false;
+        rb.gravityScale = 0;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+
+    }
+
 }

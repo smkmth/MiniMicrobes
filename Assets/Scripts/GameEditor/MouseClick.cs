@@ -7,32 +7,36 @@ public class MouseClick : MonoBehaviour
     public GameArray gameArray;
     public Grid grid;
     public GameObject Wall;
-
+    public bool canEdit;
 
     private void Start()
     {
+        canEdit = true;
         gameArray = GetComponent<GameArray>();
         grid = GameObject.FindGameObjectWithTag("Grid").GetComponent<Grid>();
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (canEdit)
         {
-           
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit))
+            if (Input.GetMouseButtonDown(0))
             {
-                if (hit.transform.tag == "GridSquare")
+
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(ray, out hit))
                 {
-                    GridCell gridcell = hit.transform.gameObject.GetComponent<GridCell>();
-                    gameArray.AddWallToArray(gridcell.x, gridcell.y);
-                    Instantiate(Wall, hit.transform);
+                    if (hit.transform.tag == "GridSquare")
+                    {
+                        GridCell gridcell = hit.transform.gameObject.GetComponent<GridCell>();
+                        gameArray.AddWallToArray(gridcell.x, gridcell.y);
+                        Instantiate(Wall, hit.transform);
 
 
-                    Debug.Log(gridcell.x + " " + gridcell.y);
+                        Debug.Log(gridcell.x + " " + gridcell.y);
 
+                    }
                 }
             }
         }
