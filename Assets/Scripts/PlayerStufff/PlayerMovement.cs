@@ -21,14 +21,14 @@ public class PlayerMovement : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         rb = GetComponent<Rigidbody2D>();
-        StopControllingPlayer();
+       // StopControllingPlayer();
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
         grounded = Physics2D.OverlapCircle(groundcheck.position, groundcheckRadius, groundLayer);
-        if (!playerCanMove)
+        if (playerCanMove)
         {
             if (Input.GetAxisRaw("Horizontal") != 0)
             {

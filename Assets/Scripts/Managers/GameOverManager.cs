@@ -8,23 +8,26 @@ public class GameOverManager : MonoBehaviour {
     public GameObject PlayerPrefab;
     public KeyDoorManager keyDoorManager;
     public GameObject GameOverMessage;
-    public Transform PlayerStartPoint;
+    public PlayerSpawn PlayerSpawner;
+    public bool gameIsRunning = false;
     public bool gameOverMenuIsOn = false;
     
 
     private void Start()
     {
-        GameOverMessage.SetActive(false);
         keyDoorManager = GetComponent<KeyDoorManager>();
-        ResetGame();
     }
 
     private void Update()
     {
-        if (Player == null)
+        if (gameIsRunning)
         {
-            GameOver();
 
+            if (Player = null)
+            {
+
+                GameOver();
+            }
         }
         if (gameOverMenuIsOn)
         {
@@ -43,14 +46,25 @@ public class GameOverManager : MonoBehaviour {
         gameOverMenuIsOn = true;
     }
 
+    public void SetPlayerSpawn(PlayerSpawn playerSpawn)
+    {
+        if (PlayerSpawner != null)
+        {
+            PlayerSpawner = playerSpawn;
+        } else
+        {
+            PlayerSpawner = null;
+            PlayerSpawner = playerSpawn;
 
+        }
+    }
 
     public void ResetGame()
-    {
+    { 
         gameOverMenuIsOn = false;
 
 
-        Player = Instantiate(PlayerPrefab, PlayerStartPoint, true);
+        PlayerSpawner.SpawnPlayer();
         GameOverMessage.SetActive(false);
         foreach(Key key in keyDoorManager.takenKeys)
         {

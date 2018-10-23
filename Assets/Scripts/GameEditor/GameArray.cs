@@ -6,6 +6,15 @@ public class GameArray : MonoBehaviour {
 
     public int[] FinalArray;
     public int amountOfRows = 19;
+    public enum Entity
+    {
+        Nothing,
+        Wall, 
+        Player,
+        LeftRightEnemey,
+        UpDownEnemey
+
+    };
   
 
 
@@ -22,7 +31,22 @@ public class GameArray : MonoBehaviour {
 
     }
 	
+    public void AddElementToArray(int arrayx, int arrayy, Entity entity)
+    {
+        if (entity == Entity.Wall)
+        {
+            int index = arrayx * amountOfRows + arrayy;
+            FinalArray[index] = 1;
 
+        } 
+        else if (entity == Entity.LeftRightEnemey)
+        {
+            int index = arrayx * amountOfRows + arrayy;
+            FinalArray[index] = 5;
+
+        }
+
+    }
 
     public void AddWallToArray(int arrayx, int arrayy)
     {
@@ -34,6 +58,12 @@ public class GameArray : MonoBehaviour {
         FinalArray[index] = 1;
 
 
+    }
+
+    public void RemoveElementFromArray(int arrayx, int arrayy)
+    {
+        int index = arrayx * amountOfRows + arrayy;
+        FinalArray[index] = 0;
     }
 
     

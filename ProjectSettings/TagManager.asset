@@ -9,6 +9,8 @@ TagManager:
   - Grid
   - EditorCam
   - PlayerCam
+  - OccupiedGridSquare
+  - PlayerSpawn
   layers:
   - Default
   - TransparentFX
@@ -18,9 +20,9 @@ TagManager:
   - UI
   - 
   - 
-  - Ground
+  - Nothing
   - Grid
-  - 
+  - Ground
   - 
   - 
   - 
